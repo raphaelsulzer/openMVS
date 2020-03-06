@@ -323,7 +323,8 @@ bool Image::StereoRectifyImages(const Image& image1, const Image& image2, const 
 			std::vector<std::vector<Point2i>> contours(1);
 			for (int i=0; i<4; ++i)
 				contours.front().emplace_back(ROUND2INT(corners[i]));
-			cv::drawContours(mask, contours, 0, cv::Scalar(255), cv::FILLED);
+//			cv::drawContours(mask, contours, 0, cv::Scalar(255), cv::FILLED);
+//			cv::drawContours(mask, contours, 0, cv::Scalar(255), this->FILLED);
 		}
 	};
 	Compute::Mask(mask1, size1, image1.GetSize(), H1);

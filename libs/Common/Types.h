@@ -375,7 +375,6 @@ typedef TAliasCast<double,int32_t> CastD2I;
 # include <endian.h>
 #endif
 
-
 // I N C L U D E S /////////////////////////////////////////////////
 
 #include "Strings.h"
@@ -644,24 +643,43 @@ inline T LOG10(const T& a) {
 	return T(log10(a));
 }
 template<typename T>
-constexpr T powi(T base, int exp) {
-	T result(1);
-	while (exp) {
-		if (exp & 1)
-			result *= base;
-		exp >>= 1;
-		base *= base;
-	}
-	return result;
+inline T powi(T base, int exp) {
+    T result(1);
+    while (exp) {
+        if (exp & 1)
+            result *= base;
+        exp >>= 1;
+        base *= base;
+    }
+    return result;
 }
-constexpr int log2i(int val) {
-	int ret = -1;
-	while (val > 0) {
-		val >>= 1;
-		ret++;
-	}
-	return ret;
+inline int log2i(int val) {
+    int ret = -1;
+    while (val > 0) {
+        val >>= 1;
+        ret++;
+    }
+    return ret;
 }
+//template<typename T>
+//constexpr T powi(T base, int exp) {
+//	T result(1);
+//	while (exp) {
+//		if (exp & 1)
+//			result *= base;
+//		exp >>= 1;
+//		base *= base;
+//	}
+//	return result;
+//}
+//constexpr int log2i(int val) {
+//	int ret = -1;
+//	while (val > 0) {
+//		val >>= 1;
+//		ret++;
+//	}
+//	return ret;
+//}
 template <int N> constexpr inline int log2i() { return 1+log2i<(N>>1)>(); }
 template <>   constexpr inline int log2i<0>() { return -1; }
 template <>   constexpr inline int log2i<1>() { return 0; }
@@ -1485,7 +1503,7 @@ public:
 	TMatrix(const TMatrix<TYPE,m,n>& a, const TMatrix<TYPE,m,n>& b, cv::Matx_SubOp) : Base(a, b, cv::Matx_SubOp()) {}
 	template<typename TYPE2> TMatrix(const TMatrix<TYPE,m,n>& a, TYPE2 alpha, cv::Matx_ScaleOp) : Base(a, alpha, cv::Matx_ScaleOp()) {}
 	TMatrix(const TMatrix<TYPE,m,n>& a, const TMatrix<TYPE,m,n>& b, cv::Matx_MulOp) : Base(a, b, cv::Matx_MulOp()) {}
-	TMatrix(const TMatrix<TYPE,m,n>& a, const TMatrix<TYPE,m,n>& b, cv::Matx_DivOp) : Base(a, b, cv::Matx_DivOp()) {}
+	//TMatrix(const TMatrix<TYPE,m,n>& a, const TMatrix<TYPE,m,n>& b, cv::Matx_DivOp) : Base(a, b, cv::Matx_DivOp()) {}
 	template<int l> TMatrix(const TMatrix<TYPE,m,l>& a, const TMatrix<TYPE,l,n>& b, cv::Matx_MatMulOp) : Base(a, b, cv::Matx_MatMulOp()) {}
 	TMatrix(const TMatrix<TYPE,n,m>& a, cv::Matx_TOp) : Base(a, cv::Matx_TOp()) {}
 

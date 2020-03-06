@@ -357,6 +357,13 @@ bool Scene::Load(const String& fileName, bool bImport)
 	// init images
 	nCalibratedImages = 0;
 	size_t nTotalPixels(0);
+//    FOREACH(point, pointcloud.points){
+//        std::cout << point._vector << std::endl;
+//    }
+//    FOREACH(pointV, pointcloud.pointViews){
+//        std::cout << pointV << std::endl;
+//    }
+
 	FOREACH(ID, images) {
 		Image& imageData = images[ID];
 		if (imageData.poseID == NO_ID)

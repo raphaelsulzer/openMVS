@@ -23,6 +23,17 @@ set(OpenMVS_MINOR_VERSION 1)
 set(OpenMVS_PATCH_VERSION 0)
 set(OpenMVS_VERSION ${OpenMVS_MAJOR_VERSION}.${OpenMVS_MINOR_VERSION}.${OpenMVS_PATCH_VERSION})
 
+
+### surpress some warnings when make
+### taken from the cmake file here: http://www.open3d.org/docs/release/tutorial/C++/cplusplus_interface.html
+if(UNIX)
+    add_definitions(-DUNIX)
+    add_compile_options(-Wno-deprecated-declarations)
+    add_compile_options(-Wno-unused-result)
+    add_compile_options(-Wno-all)
+    add_definitions(-O3)
+endif(UNIX)
+
 # Find dependencies:
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/build/Modules)
 

@@ -31,6 +31,8 @@
 
 #include "../../libs/MVS/Common.h"
 #include "../../libs/MVS/Scene.h"
+//#include "MVS/Common.h"
+//#include "MVS/Scene.h"
 #include <boost/program_options.hpp>
 
 using namespace MVS;
