@@ -59,12 +59,23 @@ import argparse
 
 DEBUG = False
 
-# add current directory to PATH
 if sys.platform.startswith('win'):
     path_delim = ';'
 else:
     path_delim = ':'
 os.environ['PATH'] += path_delim + os.getcwd()
+=======
+if sys.platform.startswith('win'):
+    PATH_DELIM = ';'
+else:
+    PATH_DELIM = ':'
+
+# add this script's directory to PATH
+os.environ['PATH'] += PATH_DELIM + os.path.dirname(os.path.abspath(__file__))
+
+# add current directory to PATH
+os.environ['PATH'] += PATH_DELIM + os.getcwd()
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 
 
 def whereis(afile):
@@ -81,15 +92,27 @@ def whereis(afile):
     except subprocess.CalledProcessError:
         return None
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 def find(afile):
     """
         As whereis look only for executable on linux, this find look for all file type
     """
+<<<<<<< HEAD
     for d in os.environ['PATH'].split(path_delim):
+=======
+    for d in os.environ['PATH'].split(PATH_DELIM):
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
         if os.path.isfile(os.path.join(d, afile)):
             return d
     return None
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 # Try to find openMVG and openMVS binaries in PATH
 OPENMVG_BIN = whereis("openMVG_main_SfMInit_ImageListing")
 OPENMVS_BIN = whereis("ReconstructMesh")
@@ -115,11 +138,18 @@ PRESET = {'SEQUENTIAL': [0, 1, 2, 3, 9, 10, 11, 12, 13],
 
 PRESET_DEFAULT = 'SEQUENTIAL'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 # HELPERS for terminal colors
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
 NO_EFFECT, BOLD, UNDERLINE, BLINK, INVERSE, HIDDEN = (0, 1, 4, 5, 7, 8)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 # from Python cookbook, #475186
 def has_colours(stream):
     '''
@@ -161,6 +191,10 @@ class ConfContainer:
 
 
 class AStep:
+<<<<<<< HEAD
+=======
+    """ Represents a process step to be run """
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
     def __init__(self, info, cmd, opt):
         self.info = info
         self.cmd = cmd
@@ -168,6 +202,10 @@ class AStep:
 
 
 class StepsStore:
+<<<<<<< HEAD
+=======
+    """ List of steps with facilities to configure them """
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
     def __init__(self):
         self.steps_data = [
             ["Intrinsics analysis",          # 0
@@ -245,11 +283,16 @@ CONF = ConfContainer()
 STEPS = StepsStore()
 
 # ARGS
+<<<<<<< HEAD
 parser = argparse.ArgumentParser(
+=======
+PARSER = argparse.ArgumentParser(
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
     formatter_class=argparse.RawTextHelpFormatter,
     description="Photogrammetry reconstruction with these steps: \r\n" +
     "\r\n".join(("\t%i. %s\t %s" % (t, STEPS[t].info, STEPS[t].cmd) for t in range(STEPS.length())))
     )
+<<<<<<< HEAD
 parser.add_argument('input_dir',
                     help="the directory wich contains the pictures set.")
 parser.add_argument('output_dir',
@@ -259,15 +302,35 @@ parser.add_argument('--steps',
                     nargs="+",
                     help="steps to process")
 parser.add_argument('--preset',
+=======
+PARSER.add_argument('input_dir',
+                    help="the directory wich contains the pictures set.")
+PARSER.add_argument('output_dir',
+                    help="the directory wich will contain the resulting files.")
+PARSER.add_argument('--steps',
+                    type=int,
+                    nargs="+",
+                    help="steps to process")
+PARSER.add_argument('--preset',
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
                     help="steps list preset in \r\n" +
                     " \r\n".join([k + " = " + str(PRESET[k]) for k in PRESET]) +
                     " \r\ndefault : " + PRESET_DEFAULT)
 
+<<<<<<< HEAD
 group = parser.add_argument_group('Passthrough', description="Option to be passed to command lines (remove - in front of option names)\r\ne.g. --1 p ULTRA to use the ULTRA preset in openMVG_main_ComputeFeatures")
 for n in range(STEPS.length()):
     group.add_argument('--'+str(n), nargs='+')
 
 parser.parse_args(namespace=CONF)  # store args in the ConfContainer
+=======
+GROUP = PARSER.add_argument_group('Passthrough', description="Option to be passed to command lines (remove - in front of option names)\r\ne.g. --1 p ULTRA to use the ULTRA preset in openMVG_main_ComputeFeatures")
+for n in range(STEPS.length()):
+    GROUP.add_argument('--'+str(n), nargs='+')
+
+PARSER.parse_args(namespace=CONF)  # store args in the ConfContainer
+
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 
 # FOLDERS
 
@@ -276,6 +339,10 @@ def mkdir_ine(dirname):
     if not os.path.exists(dirname):
         os.mkdir(dirname)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1ea9c9602038c2c79eff37baeb089b8dbbab636
 # Absolute path for input and ouput dirs
 CONF.input_dir = os.path.abspath(CONF.input_dir)
 CONF.output_dir = os.path.abspath(CONF.output_dir)
