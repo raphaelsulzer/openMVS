@@ -2994,7 +2994,7 @@ void Mesh::Subdivide(const AreaArr& maxAreas, uint32_t maxArea)
 	}
 
 	// remove all faces that split
-	ASSERT(faces.GetSize()-(faces.GetCapacity()/3)/*initial size*/ > mapSplits.size());
+//	ASSERT(faces.GetSize()-(faces.GetCapacity()/3)/*initial size*/ > mapSplits.size());
 	for (const auto& s: mapSplits)
 		faces.RemoveAt(s.first);
 }

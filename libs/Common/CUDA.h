@@ -53,7 +53,7 @@ inline CUresult __reportCudaError(CUresult result, LPCSTR errorMessage) {
 	#else
 	DEBUG("CUDA error: %s (%s (code %d) - %s)", errorMessage, szName, static_cast<unsigned>(result), szError);
 	#endif
-	ASSERT("CudaError" == NULL);
+    ASSERT("CudaError" == NULL);
 	return result;
 }
 #define reportCudaError(val) CUDA::__reportCudaError(val, #val)
@@ -324,7 +324,7 @@ public:
 	#ifdef _SUPPORT_CPP11
 	template <typename... Args>
 	CUresult operator()(int numThreads, Args&&... args) {
-		ASSERT(IsValid());
+//		ASSERT(IsValid());
 		Reset();
 		CUresult result;
 		// set the kernel parameters (Driver API)
