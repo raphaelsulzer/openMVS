@@ -118,7 +118,7 @@ public:
 			if (!depthMap.isInsideWithBorder<int,4>(pt))
 				return;
 			const float z((float)INVERT(normalPlane.dot(camera.TransformPointI2C(Point2(pt)))));
-			ASSERT(z > 0);
+//			ASSERT(z > 0);
 			Depth& depth = depthMap(pt);
 			if (depth == 0 || depth > z) {
 				depth = z;
