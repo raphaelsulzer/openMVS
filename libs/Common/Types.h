@@ -644,7 +644,11 @@ inline T LOG10(const T& a) {
 	return T(log10(a));
 }
 template<typename T>
-constexpr T powi(T base, int exp) {
+
+//constexpr T powi(T base, int exp) {
+// changed the original above because it was causing issues.
+// fix is coming from here: https://github.com/microsoft/vcpkg/issues/6837
+inline T powi(T base, int exp) {
 	T result(1);
 	while (exp) {
 		if (exp & 1)
@@ -654,7 +658,10 @@ constexpr T powi(T base, int exp) {
 	}
 	return result;
 }
-constexpr int log2i(int val) {
+//constexpr int log2i(int val) {
+// changed the original above because it was causing issues.
+// fix is coming from here: https://github.com/microsoft/vcpkg/issues/6837
+inline int log2i(int val) {
 	int ret = -1;
 	while (val > 0) {
 		val >>= 1;
